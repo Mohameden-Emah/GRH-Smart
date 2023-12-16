@@ -13,30 +13,28 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.grh.entites.Employee;
-import com.grh.service.EmployeeService;
-
+import com.grh.entites.Conge;
+import com.grh.service.CongeService;
 @RestController
-@RequestMapping("api/emp")
-public class EmployeeController {
+@RequestMapping("conge")
+public class CongeController {
 
     @Autowired
-    private EmployeeService service;
-    
+    private CongeService service;
+
     @GetMapping("/all")
-    public ResponseEntity<List<Employee>> allEmployee(){
-        return ResponseEntity.status(HttpStatus.OK).body(service.finAllEmp());
+    public ResponseEntity<List<Conge>> allConge(){
+        return ResponseEntity.status(HttpStatus.OK).body(service.finAllConge());
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee ){
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.createEmp(employee));
+    public ResponseEntity<Conge> createConge(@RequestBody Conge Conge ){
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.createConge(Conge));
     }
-    
+
 
     @DeleteMapping("delete/{id}")
-    public ResponseEntity<Boolean> deleteEmployeeByID(@PathVariable("id") Long id){
-        return ResponseEntity.status(HttpStatus.OK).body(service.deleteEmp(id));
+    public ResponseEntity<Boolean> deleteCongeByID(@PathVariable("id") Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(service.deleteConge(id));
     }
-
 }

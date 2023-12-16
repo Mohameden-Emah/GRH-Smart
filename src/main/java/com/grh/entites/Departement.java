@@ -16,7 +16,7 @@ public class Departement {
  private Long id;
     @Column(nullable = false, name= "name")
  private String Name_dep ;
+    @Column(nullable = false)
  private String desc_dep;
-
 
 }

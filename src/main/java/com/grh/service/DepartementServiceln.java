@@ -1,6 +1,5 @@
 package com.grh.service;
 
-import com.grh.entites.Conge;
 import com.grh.entites.Departement;
 
 import java.util.List;

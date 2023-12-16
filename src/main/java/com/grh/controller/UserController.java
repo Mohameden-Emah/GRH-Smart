@@ -1,6 +1,7 @@
 package com.grh.controller;
 
 
+import com.grh.entites.Employee;
 import com.grh.entites.User;
 import com.grh.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,10 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(service.deleteUser(id));
     }
 
-
+    @PutMapping("update/{id}")
+    public ResponseEntity<String> deleteUserByID(@RequestBody User user, @PathVariable("id") Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(service.updateUser(user, id));
+    }
 
 
 }

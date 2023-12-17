@@ -1,12 +1,13 @@
 package com.grh.service;
 
-import com.grh.reposetory.EmployeeRepo;
-import com.grh.entites.*;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import com.grh.entites.Employee;
+import com.grh.reposetory.EmployeeRepo;
 
 @Service
 public class EmployeeService implements EmployeServiceIn{
@@ -34,15 +35,21 @@ public class EmployeeService implements EmployeServiceIn{
         return repository.findAll();
     }
 
-    public String updateEmp(Employee Employee, Long id){
-        Optional<Employee> EmployeeOptional=repository.findById(id);
-        if(EmployeeOptional.isPresent()){
-            Employee updateEmployee = EmployeeOptional.get();
-            updateEmployee.setName(Employee.getName());
-
+    @Override
+    public String updateEmp(Employee updatedEmployee, Long id) {
+        Optional<Employee> existingEmployeeOptional = repository.findById(id);
+    
+        if (existingEmployeeOptional.isPresent()) {
+            Employee existingEmployee = existingEmployeeOptional.get();
+            existingEmployee.setName(updatedEmployee.getName());
+            
+    
+            repository.save(existingEmployee);
+            
+            return "Employee est modified";
+        } else {
+            return "Employee not exist";
         }
-
-        return "";
     }
 
 

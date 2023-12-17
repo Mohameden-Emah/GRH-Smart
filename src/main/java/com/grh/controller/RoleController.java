@@ -13,28 +13,32 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.grh.entites.Conge;
-import com.grh.service.CongeService;
+import com.grh.entites.Role;
+import com.grh.service.RoleService;
+
 @RestController
-@RequestMapping("api/conge")
-public class CongeController {
+@RequestMapping("api/role")
+public class RoleController {
 
-    @Autowired
-    private CongeService service;
-
-    @GetMapping("all")
-    public ResponseEntity<List<Conge>> allConge(){
-        return ResponseEntity.status(HttpStatus.OK).body(service.finAllConge());
+      @Autowired
+    private RoleService service;
+    
+    @GetMapping("/all")
+    public ResponseEntity<List<Role>> allRole(){
+        return ResponseEntity.status(HttpStatus.OK).body(service.finAllRole());
     }
 
-    @PostMapping("create")
-    public ResponseEntity<Conge> createConge(@RequestBody Conge Conge ){
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.createConge(Conge));
+    @PostMapping("/create")
+    public ResponseEntity<Role> createRole(@RequestBody Role Role ){
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.createRole(Role));
     }
-
+    
 
     @DeleteMapping("delete/{id}")
-    public ResponseEntity<Boolean> deleteCongeByID(@PathVariable("id") Long id){
-        return ResponseEntity.status(HttpStatus.OK).body(service.deleteConge(id));
+    public ResponseEntity<Boolean> deleteRoleByID(@PathVariable("id") Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(service.deleteRole(id));
     }
+
+
+    
 }

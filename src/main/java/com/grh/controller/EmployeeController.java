@@ -2,6 +2,7 @@ package com.grh.controller;
 
 import java.util.List;
 
+import com.grh.service.employeBydep.EmployeeResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.grh.entites.Employee;
+import com.grh.service.employeBydep.EmployeeByDepartment;
 import com.grh.service.EmployeeService;
 
 @RestController
@@ -43,5 +45,10 @@ public class EmployeeController {
     @PutMapping("update/{id}")
     public ResponseEntity<String> deleteEmployeeByID(@RequestBody Employee employee, @PathVariable("id") Long id){
         return ResponseEntity.status(HttpStatus.OK).body(service.updateEmp(employee, id));
+    }
+
+    @GetMapping("by-Dep")
+    public ResponseEntity<EmployeeResult> getEmpByDep(){
+        return ResponseEntity.status(HttpStatus.OK).body(service.getEmployeeByDep());
     }
 }

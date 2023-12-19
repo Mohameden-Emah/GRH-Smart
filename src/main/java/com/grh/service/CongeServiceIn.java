@@ -9,5 +9,6 @@ public interface CongeServiceIn {
     public List<Conge> finAllConge();
     public String updateConge(Conge Conge, Long id);
     public Boolean deleteConge(Long id);
+    public   List<Conge> findByEmployeIdAndDateCongeYear(Long employeId, int year);
 
 }

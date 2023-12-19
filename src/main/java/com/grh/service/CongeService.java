@@ -26,9 +26,11 @@ public class CongeService {
         }
         return false;
     }
+    public boolean employeAPrisCongeCetteAnnee(Long employeId, int year) {
+        List<Conge> conges = repository.findByEmployeIdAndDateCongeYear(employeId, year);
+        return !conges.isEmpty();
 
-
-
+    }
     public List<Conge> finAllConge(){
         return repository.findAll();
     }

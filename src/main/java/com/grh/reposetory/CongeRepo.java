@@ -9,7 +9,6 @@ import com.grh.entites.Employee;
 
 
 public interface CongeRepo extends JpaRepository<Conge,Long> {
-
     List<Conge> findByEmployee(Employee employee);
 
 }

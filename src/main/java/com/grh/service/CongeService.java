@@ -10,15 +10,19 @@ import org.springframework.stereotype.Service;
 import com.grh.entites.Conge;
 import com.grh.entites.Employee;
 import com.grh.reposetory.CongeRepo;
+import com.grh.reposetory.EmployeeRepo;
 @Service
 public class CongeService implements CongeServiceIn{
 
     @Autowired
     private CongeRepo repository;
 
+    @Autowired
+    private EmployeeRepo repRepository;
+
     @Override
     public String createConge(Conge conge){
-        boolean check = checkCongeThisYear(conge.getEmployee());
+        boolean check = checkCongeThisYear(conge.getEmployee().getId());
         if(check){
             return "Employee has take his LeaveRequest for this year";
         }else{
@@ -62,19 +66,24 @@ public class CongeService implements CongeServiceIn{
 
 
     @Override
-    public boolean checkCongeThisYear(Employee employee) {
-        List<Conge> conges = repository.findAll();
-        boolean emp =false;
-        for (Conge conge : conges) {
-            int ActualYear = LocalDate.now().getYear();
-            if (conge.getEmployee() == employee && conge.getDateStart().getYear() == ActualYear) {
-                emp = true;
+    public boolean checkCongeThisYear(Long id) {
+        Optional<Employee> existingEmpOptional = repRepository.findById(id);
+        if(existingEmpOptional.isPresent()){
+            List<Conge> conges = repository.findAll();
+            Employee emp = existingEmpOptional.get();
+
+            for (Conge conge : conges) {
+                int actualYear = LocalDate.now().getYear();
+            if (conge.getEmployee().equals(emp) && conge.getDateStart().getYear()==actualYear) {
+                
+                return true;
             }
+
+            }
+            return false;
         }
-        return emp;
-
+        return false;
     }
-
     @Override
     public List<Conge> finAllConge() {
         return repository.findAll();

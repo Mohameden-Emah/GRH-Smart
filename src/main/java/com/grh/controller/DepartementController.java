@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.grh.entites.Departement;
 import com.grh.service.DepartementService;
+import com.grh.service.employeBydep.DepEmployees;
 
 @RestController
 @RequestMapping("/api/dep")
@@ -36,6 +37,11 @@ public class DepartementController {
     @DeleteMapping("delete/{id}")
     public ResponseEntity<Boolean> deleteDepartementByID(@PathVariable("id") Long id){
         return ResponseEntity.status(HttpStatus.OK).body(service. deleteDepartement(id));
+    }
+
+    @GetMapping("debByID/{id}")
+    public ResponseEntity<DepEmployees> getDepEmps(@PathVariable("id") Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(service.getDepEmp(id));
     }
 
 }

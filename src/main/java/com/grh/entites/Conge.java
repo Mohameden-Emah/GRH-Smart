@@ -1,6 +1,6 @@
 package com.grh.entites;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,8 +23,8 @@ public class Conge {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long congeID;
 
-    private Date dateStart;
-    private Date dateEnd;
+    private LocalDate dateStart;
+    private LocalDate dateEnd;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "id")

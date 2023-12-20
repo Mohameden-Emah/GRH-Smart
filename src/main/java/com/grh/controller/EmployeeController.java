@@ -2,7 +2,6 @@ package com.grh.controller;
 
 import java.util.List;
 
-import com.grh.service.employeBydep.EmployeeResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.grh.entites.Employee;
-import com.grh.service.employeBydep.EmployeeByDepartment;
 import com.grh.service.EmployeeService;
+import com.grh.service.employeBydep.EmployeeResult;
 
 @RestController
 @RequestMapping("api/emp")
@@ -31,6 +30,10 @@ public class EmployeeController {
         return ResponseEntity.status(HttpStatus.OK).body(service.finAllEmp());
     }
 
+    @GetMapping("byId/{id}")
+    public ResponseEntity<Boolean> byId(@PathVariable("id") Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(service.getEmployeeByID(id));
+    }
     @PostMapping("/create")
     public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee ){
         return ResponseEntity.status(HttpStatus.CREATED).body(service.createEmp(employee));

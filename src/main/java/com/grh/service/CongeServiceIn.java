@@ -1,14 +1,15 @@
 package com.grh.service;
 
-import com.grh.entites.Conge;
-
 import java.util.List;
 
+import com.grh.entites.Conge;
+import com.grh.entites.Employee;
+
 public interface CongeServiceIn {
-    public Conge createConge(Conge Conge);
+    public String createConge(Conge conge);
     public List<Conge> finAllConge();
-    public String updateConge(Conge Conge, Long id);
+    public String updateConge(Conge conge, Long id);
     public Boolean deleteConge(Long id);
-    public   List<Conge> findByEmployeIdAndDateCongeYear(Long employeId, int year);
+    public boolean checkCongeThisYear(Employee employee);
 
 }

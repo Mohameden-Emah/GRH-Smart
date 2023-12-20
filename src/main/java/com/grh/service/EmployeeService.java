@@ -94,4 +94,15 @@ public class EmployeeService implements EmployeServiceIn{
         return employeeResult;
     }
 
+    @Override
+    public boolean getEmployeeByID(Long id) {
+        Optional<Employee> existingEmployeeOptional = repository.findById(id);
+    
+        if(existingEmployeeOptional.isPresent()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

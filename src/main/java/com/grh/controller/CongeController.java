@@ -28,7 +28,7 @@ public class CongeController {
     }
 
     @PostMapping("create")
-    public ResponseEntity<Conge> createConge(@RequestBody Conge Conge ){
+    public ResponseEntity<String> createConge(@RequestBody Conge Conge ){
         return ResponseEntity.status(HttpStatus.CREATED).body(service.createConge(Conge));
     }
 

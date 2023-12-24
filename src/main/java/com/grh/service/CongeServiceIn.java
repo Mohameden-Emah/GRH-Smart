@@ -2,7 +2,7 @@ package com.grh.service;
 
 import java.util.List;
 
-import com.grh.entites.Conge;
+import com.grh.entity.Conge;
 
 public interface CongeServiceIn {
     public String createConge(Conge conge);

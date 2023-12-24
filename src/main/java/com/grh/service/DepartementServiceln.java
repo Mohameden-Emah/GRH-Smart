@@ -2,8 +2,8 @@ package com.grh.service;
 
 import java.util.List;
 
-import com.grh.entites.Departement;
-import com.grh.service.employeBydep.DepEmployees;
+import com.grh.dto.DepEmployees;
+import com.grh.entity.Departement;
 
 public interface DepartementServiceln {
     public Departement  createDepartement(Departement departement);

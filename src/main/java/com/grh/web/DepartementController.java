@@ -39,9 +39,9 @@ public class DepartementController {
         return ResponseEntity.status(HttpStatus.OK).body(service. deleteDepartement(id));
     }
 
-    @GetMapping("debByID/{id}")
-    public ResponseEntity<DepEmployees> getDepEmps(@PathVariable("id") Long id){
-        return ResponseEntity.status(HttpStatus.OK).body(service.getDepEmp(id));
-    }
+    // @GetMapping("debByID/{id}")
+    // public ResponseEntity<DepEmployees> getDepEmps(@PathVariable("id") Long id){
+    //     return ResponseEntity.status(HttpStatus.OK).body(service.getDepEmp(id));
+    // }
 
 }

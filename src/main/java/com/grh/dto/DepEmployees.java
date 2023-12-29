@@ -16,5 +16,4 @@ import lombok.NoArgsConstructor;
 public class DepEmployees {
     private int total;
     private List<Employee> emp;
-    
 }

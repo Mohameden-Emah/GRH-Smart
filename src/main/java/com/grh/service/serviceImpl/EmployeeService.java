@@ -57,40 +57,6 @@ public class EmployeeService implements EmployeServiceIn{
         }
     }
 
-    // @Override
-    // public EmployeeResult getEmployeeByDep() {
-    //     List<Employee> employees = repository.findAll();
-    //     List<Departement> departments = departementRepo.findAll();
-
-    //     List<EmployeeByDepartment> departmentsByEmployees = new ArrayList<>();
-
-    //     for (Departement department : departments) {
-    //         List<Employee> employeesInDepartment = new ArrayList<>();
-    //         for (Employee employee : employees) {
-    //             if (employee.getDepartement().equals(department)) {
-    //                 employeesInDepartment.add(employee);
-    //             }
-    //         }
-
-    //         EmployeeByDepartment departmentWithEmployees = new EmployeeByDepartment();
-    //         departmentWithEmployees.setDepartmentName(department.getName_dep());
-    //         departmentWithEmployees.setTotalEmployees(employeesInDepartment.size());
-
-    //         List<String> employeeNames = employeesInDepartment.stream()
-    //                 .map(Employee::getName)
-    //                 .collect(Collectors.toList());
-
-    //         departmentWithEmployees.setEmployeeNames(employeeNames);
-
-    //         departmentsByEmployees.add(departmentWithEmployees);
-    //     }
-
-    //     EmployeeResult employeeResult = new EmployeeResult();
-    //     employeeResult.setDepartmentsByEmployees(departmentsByEmployees);
-
-    //     return employeeResult;
-    // }
-
     @Override
     public boolean getEmployeeByID(Long id) {
         Optional<Employee> existingEmployeeOptional = repository.findById(id);

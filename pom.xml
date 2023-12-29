@@ -13,8 +13,21 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>grh</name>
 	<description>app grh</description>
-	<properties>
-		<java.version>17</java.version>
+		<properties>
+			<java.version>17</java.version>
+			<jacoco.version>0.8.6</jacoco.version>
+			<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+			<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+			<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
+			<sonar.language>java</sonar.language>
+			<sonar.language>java</sonar.language>
+			<sonar.host.url>http://localhost:9000</sonar.host.url>
+			<sonar.login>admin</sonar.login>
+			<sonar.password>i18207</sonar.password>
+			<sonar.projectKey>grh-smart</sonar.projectKey>
+			<sonar.projectName>grh-smart</sonar.projectName>
+			<sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+			<sonar.junit.reportPaths>target/surefire-reports</sonar.junit.reportPaths>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -84,6 +97,35 @@
 						</exclude>
 					</excludes>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>3.9.0.2155</version> <!-- Replace with the latest version -->
+			</plugin>
+			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>3.9.0.2155</version> <!-- Replace with the latest version -->
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.7</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserServices {
     @Override
     public ResponseEntity<?> addUser(AppUser userInfo) {
         userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
-        Role roleUse = roleRepository.findById(1).get();
+        Role roleUse = roleRepository.findById(2).get();
         userInfo.setRole(roleUse);
         appUserRepository.save(userInfo);
         return ResponseEntity.status(HttpStatus.CREATED).build();

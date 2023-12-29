@@ -66,8 +66,17 @@ public class SecurityConfig {
 
                 .requestMatchers(HttpMethod.GET, "api/emp/all").hasAuthority("list_emp")
                 .requestMatchers(HttpMethod.POST, "api/emp/create").hasAuthority("add_emp")
-                .requestMatchers(HttpMethod.POST, "api/emp/update").hasAuthority("update_emp")
+                .requestMatchers(HttpMethod.PUT, "api/emp/update").hasAuthority("update_emp")
                 .requestMatchers(HttpMethod.DELETE, "api/emp/delete/{id}").hasAuthority("delete_emp")
+
+                .requestMatchers(HttpMethod.GET, "api/dep/all").hasAuthority("list_dep")
+                .requestMatchers(HttpMethod.POST, "api/dep/create").hasAuthority("add_dep")
+                .requestMatchers(HttpMethod.GET, "api/dep/debByID/{id}").hasAuthority("get_dep_by_emp")
+                .requestMatchers(HttpMethod.DELETE, "api/dep/delete/{id}").hasAuthority("delete_dep")
+
+                .requestMatchers(HttpMethod.POST, "api/conge/create").hasAuthority("add_conge")
+                .requestMatchers(HttpMethod.GET, "api/conge/all").hasAuthority("list_conge")
+                .requestMatchers(HttpMethod.DELETE, "api/conge/delete/{id}").hasAuthority("delete_conge")
 
                 .and()
                 .sessionManagement()

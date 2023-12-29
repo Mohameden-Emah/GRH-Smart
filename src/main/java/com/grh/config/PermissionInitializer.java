@@ -2,6 +2,7 @@ package com.grh.config;
 
 import java.util.Optional;
 
+// import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -42,18 +43,22 @@ public class PermissionInitializer implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
-        String[] perm_list = { "list_emp","add_emp","update_emp","delete_emp", "list_role", "view_role", "create_role", "update_role", "delete_role",
+        String[] perm_list = { "add_conge","list_conge","delete_conge","get_dep_by_emp","list_dep","add_dep","delete_dep","list_emp","add_emp","update_emp","delete_emp", "list_role", "view_role", "create_role", "update_role", "delete_role",
                 "list_permission", "view_permission", "create_permission", "update_permission", "delete_permission",
                 "list_user", "update_user_password", "update_user_role", "delete_user", "list_account", "view_account","create_permission", 
                 "update_user_password", "get_profile", "update_profile","create_company","view_company"
         };
-
+        
         for (String perm : perm_list) {
             createPermissionIfNotFound(perm);
         }
 
+
         createSuperAdminRole("super_admin");
         createSuperUser("admin", "admin", "admin@admin.com");
+        // createAgentRole();
+
+
     }
 
     @Transactional
@@ -101,5 +106,32 @@ public class PermissionInitializer implements ApplicationRunner {
             roleRepository.save(superAdminRole);
         }
     }
+
+    // String[] permAgent = {
+    //     "get_dep_by_emp", "list_dep", "add_dep", "delete_dep", "list_emp", "add_emp", "update_emp", "delete_emp"
+    // };
+
+    // @Transactional
+    // public void createAgentRole() {
+    //     String agentRoleName = "agent";
+    //     Role agentRole = roleRepository.findByName(agentRoleName);
+
+    //     // Créez le rôle "agent" s'il n'existe pas
+    //     if (agentRole == null) {
+    //         agentRole = new Role();
+    //         agentRole.setName(agentRoleName);
+    //         List<Permission> prList = new ArrayList<>();
+    //         for (String perm : permAgent) {
+    //             Permission permission = permissionRepository.findByName(perm);
+    //             if (permission != null) {
+    //                 prList.add(permission);
+    //             }
+    //         }
+    //         agentRole.setPermissions(prList);
+    //         roleRepository.save(agentRole);
+    //     }
+    // }
+
+
 
 }

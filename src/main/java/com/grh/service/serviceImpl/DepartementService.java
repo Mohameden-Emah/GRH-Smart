@@ -1,11 +1,11 @@
 package com.grh.service.serviceImpl;
 
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.grh.dao.DepartementRepo;
@@ -29,8 +29,8 @@ public class DepartementService implements DepartementServiceln {
 
 
     public Boolean deleteDepartement(Long id) {
-        Optional<Departement> DepartementOptional = repository.findById(id);
-        if(DepartementOptional.isPresent()){
+        Optional<Departement> departementOptional = repository.findById(id);
+        if(departementOptional.isPresent()){
             repository.deleteById(id);
             return true;
         }
@@ -42,33 +42,24 @@ public class DepartementService implements DepartementServiceln {
 
 
     @Override
-    public DepEmployees getDepEmp(Long id) {
+    public ResponseEntity<Object> getDepEmp(Long id) {
         Optional<Departement> dep = repository.findById(id);
-        System.out.println(dep);
-        List<Employee> employees = empRepository.findAll();
         if(dep.isPresent()){
-            Departement departement = dep.get();
-            List<Employee> employeesInDepartment = new ArrayList<>();
-            for (Employee employee : employees) {
-                if (employee.getDepartement().equals(departement)) {
-                    employeesInDepartment.add(employee);
-                }
-            }
 
-            DepEmployees depEmp =  new DepEmployees();
-            depEmp.setTotal(employeesInDepartment.size());
-            depEmp.setEmp(employeesInDepartment);
+            var departement = dep.get();
 
-            return depEmp;
+            List<Employee> employeesInDepartment = empRepository.findByDepartement(departement);
+            var depEmployees = new DepEmployees(employeesInDepartment.size(), employeesInDepartment);
+
+            return ResponseEntity.ok().body(depEmployees);
             
         }else{
-            return null;
+            
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Dep not found");
         }
     }
 
-    
-
-
-
-
 }
+
+
+

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.grh.dto.DepEmployees;
 import com.grh.entity.Departement;
 import com.grh.service.serviceImpl.DepartementService;
 
@@ -39,9 +38,9 @@ public class DepartementController {
         return ResponseEntity.status(HttpStatus.OK).body(service. deleteDepartement(id));
     }
 
-    // @GetMapping("debByID/{id}")
-    // public ResponseEntity<DepEmployees> getDepEmps(@PathVariable("id") Long id){
-    //     return ResponseEntity.status(HttpStatus.OK).body(service.getDepEmp(id));
-    // }
+    @GetMapping("depEmp/{id}")
+    public ResponseEntity<Object> getDepEmps(@PathVariable("id") Long id) {
+        return service.getDepEmp(id);
+    }
 
 }

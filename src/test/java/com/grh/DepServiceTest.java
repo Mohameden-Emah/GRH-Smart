@@ -23,7 +23,7 @@ import com.grh.entity.Employee;
 import com.grh.service.serviceImpl.DepartementService;
 
 @SpringBootTest
-class DepTest {
+class DepServiceTest {
 
     @Mock
     private DepartementRepo departementRepo;
@@ -35,7 +35,7 @@ class DepTest {
     private DepartementService departementService;
 
     @Test
-    public void testGetDepartementEmployees() {
+    void testGetDepartementEmployees() {
         // Arrange
         Long departementId = 1L;
 
